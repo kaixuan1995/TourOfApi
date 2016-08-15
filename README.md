@@ -1,4 +1,4 @@
-# TourOfApi
+﻿# TourOfApi
 作品简介：这是使用Rails实现一个简单的视频API
 
 作品经历: 该作品完全在Centos下开发，从Ruby的环境安装到Rails的框架搭建，期间遇到很多问题，但是本着学习钻研的精神，虽然完成了但还是有很多不足。
@@ -7,12 +7,12 @@
 作品展示：
 #浏览分类API：
 curl -i http://localhost:3000/GET/categories/json
-  效果截图见TourOfAPI/viewOfResult
+  效果截图见TourOfAPI/view_Result
 备注：/json 表示返回数据以JSON格式
 
 #分类视频浏览API
 curl -i http://localhost:3000/GET/categories/1.json
-  效果截图见TourOfAPI/viewOfResult
+  效果截图见TourOfAPI/view_Result
 备注：/1.json 表示查询分类id为1的相关标签以及视频信息
 
 
