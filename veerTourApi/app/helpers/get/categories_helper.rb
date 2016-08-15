@@ -1,0 +1,2 @@
+module Get::CategoriesHelper
+end

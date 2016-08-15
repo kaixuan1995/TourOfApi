@@ -1,0 +1,17 @@
+use veer_challenger
+select vt.tag_id ,count(vt.tag_id) as videoNum from videos_tags vt GROUP BY vt.tag_id;   //查询每个标签下的视频数
+select ct.category_id,count(ct.category_id) as tagNum from categories_tags ct GROUP BY ct.category_id;  //查询每个分类下的标签数
+
+select ct.category_id ,count(ct.category_id) as videoNum from categories_tags ct RIGHT JOIN videos_tags vt on ct.tag_id=vt.tag_id GROUP BY ct.category_id;  //查询每个分类下的视频数
+
+select cg.id,cg.name,subTableNum.videoNum from categories cg,(select ct.category_id ,count(ct.category_id) as videoNum from categories_tags ct RIGHT JOIN videos_tags vt on ct.tag_id=vt.tag_id GROUP BY ct.category_id) as subTableNum where cg.id=subTableNum.category_id
+
+=================
+
+select cg.name cg_name,ta.id tag_id,ta.name tag_name from categories_tags ct,categories cg,tags ta where ct.tag_id=ta.id and ct.category_id=cg.id and cg.id=1; //查询每个分类下的标签信息
+
+
+select cg.name cg_name,vi.id vi_id,vi.name vi_name from categories_tags ct RIGHT JOIN videos_tags vt on ct.tag_id=vt.tag_id,categories cg,videos vi,tags ta where cg.id=ct.category_id and vi.id=vt.video_id and cg.id=1 GROUP BY vi.name ORDER BY vi.id asc;  //查询每个分类下的视频信息
+
+select allInfo.cg_name,allInfo.tag_id,allInfo.tag_name,allInfo.vi_id,allInfo.vi_name from (select cg_taginfo.cg_name cg_name,cg_taginfo.tag_id tag_id,cg_taginfo.tag_name tag_name,cg_viinfo.vi_id vi_id,cg_viinfo.vi_name vi_name from (select cg.name cg_name,ta.id tag_id,ta.name tag_name from categories_tags ct,categories cg,tags ta where ct.tag_id=ta.id and ct.category_id=cg.id and cg.id=2) as cg_taginfo,(select cg.name cg_name,vi.id vi_id,vi.name vi_name from categories_tags ct RIGHT JOIN videos_tags vt on ct.tag_id=vt.tag_id,categories cg,videos vi,tags ta where cg.id=ct.category_id and vi.id=vt.video_id and cg.id=2 GROUP BY vi.name ORDER BY vi.id asc) as cg_viinfo) as allInfo
+
