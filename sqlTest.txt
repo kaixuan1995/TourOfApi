@@ -8,7 +8,7 @@ select cg.id,cg.name,subTableNum.videoNum from categories cg,(select ct.category
 
 =================
 
-select cg.name cg_name,ta.id tag_id,ta.name tag_name from categories_tags ct,categories cg,tags ta where ct.tag_id=ta.id and ct.category_id=cg.id and cg.id=1; //查询每个分类下的标签信息
+select cg.name cg_name,ta.id tag_id,ta.name tag_name from categories_tags ct,categories cg,tags ta where ct.tag_id=ta.id and ct.category_id=cg.id and cg.id=1; //查询每个分类下的标签信息。
 
 
 select cg.name cg_name,vi.id vi_id,vi.name vi_name from categories_tags ct RIGHT JOIN videos_tags vt on ct.tag_id=vt.tag_id,categories cg,videos vi,tags ta where cg.id=ct.category_id and vi.id=vt.video_id and cg.id=1 GROUP BY vi.name ORDER BY vi.id asc;  //查询每个分类下的视频信息
